@@ -45,7 +45,7 @@ public class FirstPersonController : MonoBehaviour {
 	
 	void SpawnEnemy() {
 		Vector3 v = new Vector3(10.54f, 1.5f, -17.17f);
-		int ranNum = Random.Range(0,4);
+		int ranNum = Random.Range(0,3);
 		switch(ranNum) {
 			case 1:
 				v = new Vector3(-20.6f, 1.5f, -13.3f);
@@ -91,8 +91,8 @@ public class FirstPersonController : MonoBehaviour {
 		enemySpawnTimer += Time.deltaTime;
 		if(enemySpawnTimer>enemySpawnTimeLimit) {
 			enemySpawnTimer = 0.0f;
-			if (enemySpawnTimeLimit>0.5f) {
-				enemySpawnTimeLimit-=0.1f;
+			if (enemySpawnTimeLimit>0.8f) {
+				enemySpawnTimeLimit-=0.05f;
 			}
 			SpawnEnemy();
 		}
@@ -125,6 +125,8 @@ public class FirstPersonController : MonoBehaviour {
 		if(c.gameObject.tag == "Enemy") {
 			gameOver = true;
 			gameOverText.text = "GAME OVER!";
+		} else if(c.gameObject.tag == "Ammo") {
+			GameObject.Destroy(c.gameObject);
 		}
 	}
 	
